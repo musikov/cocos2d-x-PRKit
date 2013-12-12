@@ -1,13 +1,11 @@
 /*
- PRRatcliffTriangulator.mm
+ PRKit.h
  
  PRKit:  Precognitive Research additions to Cocos2D.  http://cocos2d-iphone.org
  Contact us if you like it:  http://precognitiveresearch.com
  
  Created by Andy Sinesio on 6/25/10.
  Copyright 2011 Precognitive Research, LLC. All rights reserved.
- 
- This class fills a polygon as described by an array of NSValue-encapsulated points with a texture.
  
  Translated in C++ for Cocos2d-X by Damiano Mazzella on 19/03/2012
  
@@ -31,22 +29,9 @@
  *
  */
 
-#include "PRRatcliffTriangulator.h"
-#include <algorithm>
+#ifndef _PRKit_h
+#define _PRKit_h
 
-Vector2dVector PRRatcliffTriangulator::triangulateVertices(Vector2dVector vertices) {
-    Vector2dVector* inputPointsForTriangulation = new Vector2dVector;
-    
-    for (int index = 0; index < vertices.size(); ++index) {
-        Vector2d value = (Vector2d)vertices.at(index);
-        inputPointsForTriangulation->push_back(value);
-    }
-    
-    // Triangulate results
-    Vector2dVector triangulatedPoints;
-    
-    Triangulate::Process(*inputPointsForTriangulation, triangulatedPoints);
-    delete inputPointsForTriangulation;
-    
-    return triangulatedPoints;
-}
+#include "PRFilledPolygon.h"
+
+#endif

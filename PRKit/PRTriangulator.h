@@ -1,5 +1,5 @@
 /*
- PRRatcliffTriangulator.mm
+ PRTriangulator.h
  
  PRKit:  Precognitive Research additions to Cocos2D.  http://cocos2d-iphone.org
  Contact us if you like it:  http://precognitiveresearch.com
@@ -31,22 +31,14 @@
  *
  */
 
-#include "PRRatcliffTriangulator.h"
-#include <algorithm>
+#ifndef _PRTriangulator_h_
+#define _PRTriangulator_h_
 
-Vector2dVector PRRatcliffTriangulator::triangulateVertices(Vector2dVector vertices) {
-    Vector2dVector* inputPointsForTriangulation = new Vector2dVector;
-    
-    for (int index = 0; index < vertices.size(); ++index) {
-        Vector2d value = (Vector2d)vertices.at(index);
-        inputPointsForTriangulation->push_back(value);
-    }
-    
-    // Triangulate results
-    Vector2dVector triangulatedPoints;
-    
-    Triangulate::Process(*inputPointsForTriangulation, triangulatedPoints);
-    delete inputPointsForTriangulation;
-    
-    return triangulatedPoints;
-}
+#include "triangulate.h"
+
+class PRTriangulator {
+public:
+    virtual Vector2dVector triangulateVertices(Vector2dVector vertices) = 0;
+};
+
+#endif /* defined(_PRTriangulator_h_) */
